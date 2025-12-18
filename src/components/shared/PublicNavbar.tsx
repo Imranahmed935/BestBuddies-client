@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 
 const PublicNavbar = () => {
   return (
@@ -20,9 +20,9 @@ const PublicNavbar = () => {
           <a href="#" className="hover:text-black">
             How it Works
           </a>
-          <a href="#" className="hover:text-black">
+          <Link href="/login" className="hover:text-black">
             Login
-          </a>
+          </Link>
         </div>
 
         <div>

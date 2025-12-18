@@ -1,0 +1,8 @@
+export const dynamic = "force-dynamic";
+import React from "react";
+
+const AdminDashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  return <div>{children}</div>;
+};
+
+export default AdminDashboardLayout;
