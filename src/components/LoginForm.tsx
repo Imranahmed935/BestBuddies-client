@@ -90,23 +90,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             <span className="px-4 text-xs text-gray-400">OR CONTINUE WITH</span>
             <div className="flex-grow h-px bg-gray-200" />
           </div>
-
-          {/* Social Login */}
-          <div className="flex justify-center gap-4">
-            {[
-              { src: "https://cdn-icons-png.flaticon.com/512/2991/2991148.png", alt: "Google" },
-              { src: "https://cdn-icons-png.flaticon.com/512/733/733547.png", alt: "Facebook" },
-              { src: "https://cdn-icons-png.flaticon.com/512/5968/5968958.png", alt: "X" },
-            ].map((social) => (
-              <button
-                key={social.alt}
-                className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100"
-              >
-                <img src={social.src} alt={social.alt} className="w-5" />
-              </button>
-            ))}
-          </div>
-
           <p className="text-center text-sm text-gray-500 mt-8">
             Don’t have an account?{" "}
             <Link href="/register" className="text-blue-500 font-medium">
