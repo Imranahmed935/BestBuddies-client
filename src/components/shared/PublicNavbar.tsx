@@ -13,7 +13,7 @@ const PublicNavbar = () => {
           <Link href="/" className="hover:text-black">
             Home
           </Link>
-          <Link href="/explore" className="hover:text-black">
+          <Link href="/explore-travelers" className="hover:text-black">
             Explorer
           </Link>
           <Link href="/destinations" className="hover:text-black">

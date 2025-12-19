@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { ProfileUpdateModal } from "@/components/shared/ProfileUpdateModal";
 import { getUserInfo } from "@/services/auth/getUserInfo";
 import { MapPin, Share2, Mail, BadgeCheck, Star } from "lucide-react";
 
@@ -30,8 +31,6 @@ const MyProfilePage = async () => {
 
   return (
     <div className="bg-slate-50">
-
-      {/* HERO */}
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
@@ -42,11 +41,8 @@ const MyProfilePage = async () => {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {/* CONTENT */}
       <div className="max-w-7xl mx-auto px-4 -mt-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          {/* PROFILE CARD */}
           <div className="bg-white rounded-2xl shadow-xl p-6 text-center">
             <div className="relative w-32 h-32 mx-auto -mt-24">
               <img
@@ -58,12 +54,7 @@ const MyProfilePage = async () => {
 
             <div className="flex justify-center items-center gap-2 mt-4">
               <h2 className="text-xl font-semibold">{fullName}</h2>
-              {verified && (
-                <BadgeCheck
-                  className="text-blue-500"
-                  size={20}
-                />
-              )}
+              {verified && <BadgeCheck className="text-blue-500" size={20} />}
             </div>
 
             <p className="text-sm text-gray-500">@{username}</p>
@@ -73,9 +64,7 @@ const MyProfilePage = async () => {
               {currentLocation}
             </div>
 
-            <button className="mt-5 w-full bg-yellow-400 hover:bg-yellow-500 transition text-black font-medium py-2 rounded-xl">
-              Edit Profile
-            </button>
+            <ProfileUpdateModal userInfo={user} />
 
             <div className="flex gap-3 mt-4">
               <button className="flex-1 border rounded-xl py-2 flex items-center justify-center gap-2 hover:bg-gray-50">
@@ -86,7 +75,6 @@ const MyProfilePage = async () => {
               </button>
             </div>
 
-            {/* STATUS */}
             {subscriptionActive && (
               <div className="mt-6 bg-green-50 text-green-700 text-sm rounded-xl p-3 text-left">
                 🟢 Subscription Active — available for trips
@@ -94,10 +82,7 @@ const MyProfilePage = async () => {
             )}
           </div>
 
-          {/* RIGHT SIDE */}
           <div className="lg:col-span-2 space-y-6">
-
-            {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard label="Countries" value={visitedCountries.length} />
               <StatCard label="Age" value={age} />
@@ -117,7 +102,6 @@ const MyProfilePage = async () => {
               />
             </div>
 
-            {/* ABOUT */}
             <div className="bg-white rounded-2xl shadow-md p-6">
               <h3 className="text-lg font-semibold mb-3">About Me</h3>
               <p className="text-gray-600 leading-relaxed">{bio}</p>
@@ -134,11 +118,8 @@ const MyProfilePage = async () => {
               </div>
             </div>
 
-            {/* COUNTRIES */}
             <div className="bg-white rounded-2xl shadow-md p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                Visited Countries
-              </h3>
+              <h3 className="text-lg font-semibold mb-4">Visited Countries</h3>
               <div className="flex flex-wrap gap-3">
                 {visitedCountries.map((country: string) => (
                   <span
@@ -151,7 +132,6 @@ const MyProfilePage = async () => {
               </div>
             </div>
 
-            {/* REVIEWS */}
             <div className="bg-white rounded-2xl shadow-md p-6">
               <div className="flex justify-between items-center mb-3">
                 <h3 className="text-lg font-semibold">What Buddies Say</h3>
@@ -164,7 +144,6 @@ const MyProfilePage = async () => {
                 No reviews yet. Be the first travel buddy to leave a review ⭐
               </p>
             </div>
-
           </div>
         </div>
       </div>
@@ -172,14 +151,8 @@ const MyProfilePage = async () => {
   );
 };
 
-/* STAT CARD */
-const StatCard = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: any;
-}) => (
+
+const StatCard = ({ label, value }: { label: string; value: any }) => (
   <div className="bg-white rounded-xl shadow-md p-4 text-center">
     <div className="text-xl font-semibold">{value}</div>
     <p className="text-gray-500 text-sm">{label}</p>
