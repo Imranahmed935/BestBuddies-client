@@ -73,7 +73,7 @@ export const userNavItems: NavSection[] = [
   },
 ];
 
-// Admin-specific navigation
+
 export const adminNavItems: NavSection[] = [
   {
     title: "User Management",
