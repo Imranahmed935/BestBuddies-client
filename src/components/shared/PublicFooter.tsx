@@ -1,32 +1,36 @@
+import { MapPin } from "lucide-react";
 
 const PublicFooter = () => {
   return (
     <footer className="bg-gray-950 text-gray-300">
       <div className="max-w-7xl mx-auto px-6 py-16">
-    
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          
-
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="font-bold text-black">TB</span>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-400 text-white">
+                <MapPin size={18} />
               </div>
-              <h2 className="text-xl font-semibold text-white">
-                BestBuddies
-              </h2>
+              <span className="lg:text-4xl text-2xl font-bold tracking-tight text-white">
+                Best<span className="text-yellow-400">Buddies</span>
+              </span>
             </div>
             <p className="text-sm leading-relaxed">
-              Find your perfect travel companion and explore the world
-              together. Safe, fun, and unforgettable journeys start here.
+              Find your perfect travel companion and explore the world together.
+              Safe, fun, and unforgettable journeys start here.
             </p>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-yellow-400 cursor-pointer">Destinations</li>
-              <li className="hover:text-yellow-400 cursor-pointer">How It Works</li>
-              <li className="hover:text-yellow-400 cursor-pointer">Find Buddies</li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Destinations
+              </li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                How It Works
+              </li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Find Buddies
+              </li>
               <li className="hover:text-yellow-400 cursor-pointer">Pricing</li>
             </ul>
           </div>
@@ -34,10 +38,18 @@ const PublicFooter = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Support</h3>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-yellow-400 cursor-pointer">Help Center</li>
-              <li className="hover:text-yellow-400 cursor-pointer">Safety Guidelines</li>
-              <li className="hover:text-yellow-400 cursor-pointer">Terms & Conditions</li>
-              <li className="hover:text-yellow-400 cursor-pointer">Privacy Policy</li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Help Center
+              </li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Safety Guidelines
+              </li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Terms & Conditions
+              </li>
+              <li className="hover:text-yellow-400 cursor-pointer">
+                Privacy Policy
+              </li>
             </ul>
           </div>
 
@@ -57,19 +69,21 @@ const PublicFooter = () => {
               </button>
             </div>
           </div>
-
         </div>
         <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm">
-          <p>
-            © {new Date().getFullYear()} BestBuddies. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} BestBuddies. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <span className="hover:text-yellow-400 cursor-pointer">Facebook</span>
-            <span className="hover:text-yellow-400 cursor-pointer">Instagram</span>
-            <span className="hover:text-yellow-400 cursor-pointer">Twitter</span>
+            <span className="hover:text-yellow-400 cursor-pointer">
+              Facebook
+            </span>
+            <span className="hover:text-yellow-400 cursor-pointer">
+              Instagram
+            </span>
+            <span className="hover:text-yellow-400 cursor-pointer">
+              Twitter
+            </span>
           </div>
         </div>
-
       </div>
     </footer>
   );
