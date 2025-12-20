@@ -2,21 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server"
 
-
-
 import jwt, { JwtPayload } from "jsonwebtoken";
-
 import { loginValidationZodSchema } from "@/zod/auth.validation";
-
 import { redirect } from "next/navigation";
 import { setCookie } from "./tokenHandlers";
 import { getDefaultDashboardRoute, isValidRedirectForRole, UserRole } from "@/lib/auth-utils";
 import { zodValidator } from "@/lib/zodValidator";
 import { serverFetch } from "@/lib/server-fatch";
 import { parse } from "cookie";
-
-
-
 
 export const loginUser = async (_currentState: any, formData: any): Promise<any> => {
     try {

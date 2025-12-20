@@ -30,12 +30,10 @@ export async function exploreTravelers(filters?: { interest?: string; page?: num
 
 
 export async function getExploreTravelerById(id: string) {
-  console.log(id)
   try {
     const response = await serverFetch.get(`/user/${id}`);
 
     const result = await response.json();
-    console.log(result)
     return {
       success: result.success,
       data: result || null,

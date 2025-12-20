@@ -10,7 +10,6 @@ export const updateProfile = async (
   const id = formData.get("id")?.toString();
   const file = formData.get("file") as File | null;
 
-  console.log("Form Data Entries:", id, file);
 
   const getValue = (key: string) => {
     const value = formData.get(key);
@@ -35,7 +34,7 @@ export const updateProfile = async (
     visitedCountries: getStringArray("visitedCountries"),
   }
 
-  console.log("Raw data to be sent:", rawData); 
+ 
   const uploadFormData = new FormData();
   uploadFormData.append("data", JSON.stringify(rawData));
   if (file) uploadFormData.append("file", file);
@@ -43,8 +42,8 @@ export const updateProfile = async (
     const res = await serverFetch.patch(`/user/update/${id}`, {
       body: uploadFormData,
     });
-    const data = await res.json();
-    console.log("Updated user:", data);
+     await res.json();
+    
     return await res.json();
   } catch (error: any) {
     console.error("Update Profile Error:", error);

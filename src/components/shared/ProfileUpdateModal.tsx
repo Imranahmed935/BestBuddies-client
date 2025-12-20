@@ -181,7 +181,7 @@ export function ProfileUpdateModal({ userInfo }: { userInfo: UserInfo }) {
               <Input
                 id="travelInterests"
                 name="travelInterests"
-                defaultValue={userInfo.travelInterests.join(", ")}
+                defaultValue={userInfo.travelInterests?.join(", ")}
                 className="border-yellow-400 focus:border-yellow-400 focus:ring-yellow-400"
               />
             </div>
@@ -192,7 +192,7 @@ export function ProfileUpdateModal({ userInfo }: { userInfo: UserInfo }) {
               <Input
                 id="visitedCountries"
                 name="visitedCountries"
-                defaultValue={userInfo.visitedCountries.join(", ")}
+                defaultValue={userInfo.visitedCountries?.join(", ")}
                 className="border-yellow-400 focus:border-yellow-400 focus:ring-yellow-400"
               />
             </div>

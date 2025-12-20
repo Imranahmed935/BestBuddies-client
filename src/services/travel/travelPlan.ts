@@ -27,7 +27,6 @@ export async function getTravelById(id: string) {
     const response = await serverFetch.get(`/travel-plan/${id}`);
 
     const result = await response.json();
-    console.log(result)
     return {
       success: result.success,
       data: result.data || null,

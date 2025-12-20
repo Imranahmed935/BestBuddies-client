@@ -11,7 +11,7 @@ export async function sendConnection(payload: SendConnectionPayload) {
   try {
     
     const token = getCookie("accessToken") || "";
-    console.log("Token in sendConnection:", token);
+ 
 
     const response = await serverFetch.post("/connection/send", {
       headers: {
@@ -22,7 +22,7 @@ export async function sendConnection(payload: SendConnectionPayload) {
     });
 
     const result = await response.json();
-    console.log("sendConnection result:", result);
+   
 
     return {
       success: result.success,
@@ -43,7 +43,7 @@ export async function getPendingRequests() {
   try {
     const response = await serverFetch.get(`/connection/pending`);
     const result = await response.json();
-     console.log("getPendingRequests result:", result);
+
     return {
       success: result.success,
       data: result.data || [],

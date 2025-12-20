@@ -4,14 +4,14 @@ import { TravelPlan } from "@/types/travelPlan.interface";
 import Link from "next/link";
 
 const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
-  const host = travel.host;
+  const host = travel?.host;
 
-  const start = new Date(travel.startDate).toLocaleDateString("en-US", {
+  const start = new Date(travel?.startDate).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 
-  const end = new Date(travel.endDate).toLocaleDateString("en-US", {
+  const end = new Date(travel?.endDate).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
@@ -34,14 +34,14 @@ const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
         </div>
 
         <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full">
-          ${travel.budget} est.
+          ${travel?.budget} est.
         </div>
 
         {/* Title */}
         <div className="absolute bottom-3 left-3 right-3 text-white">
           <span className="text-xs flex items-center gap-1 text-yellow-400 font-semibold mb-1">
             <MapPin size={14} />
-            {travel.travelType}
+            {travel?.travelType}
           </span>
           <h3 className="text-lg font-bold leading-tight line-clamp-2">
             {travel.title}
@@ -55,7 +55,7 @@ const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
             <p className="text-xs uppercase text-gray-400">Location</p>
             <p className="font-medium text-gray-800 flex items-center gap-1">
               <MapPin size={14} />
-              {travel.destination}
+              {travel?.destination}
             </p>
           </div>
 

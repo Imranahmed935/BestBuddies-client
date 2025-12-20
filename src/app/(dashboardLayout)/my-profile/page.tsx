@@ -84,7 +84,7 @@ const MyProfilePage = async () => {
 
           <div className="lg:col-span-2 space-y-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <StatCard label="Countries" value={visitedCountries.length} />
+              <StatCard label="Countries" value={visitedCountries?.length} />
               <StatCard label="Age" value={age} />
               <StatCard label="Trips" value={12} />
               <StatCard
@@ -107,7 +107,7 @@ const MyProfilePage = async () => {
               <p className="text-gray-600 leading-relaxed">{bio}</p>
 
               <div className="flex flex-wrap gap-2 mt-4">
-                {travelInterests.map((interest: string) => (
+                {travelInterests?.map((interest: string) => (
                   <span
                     key={interest}
                     className="px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-900"
@@ -121,7 +121,7 @@ const MyProfilePage = async () => {
             <div className="bg-white rounded-2xl shadow-md p-6">
               <h3 className="text-lg font-semibold mb-4">Visited Countries</h3>
               <div className="flex flex-wrap gap-3">
-                {visitedCountries.map((country: string) => (
+                {visitedCountries?.map((country: string) => (
                   <span
                     key={country}
                     className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-sm"
