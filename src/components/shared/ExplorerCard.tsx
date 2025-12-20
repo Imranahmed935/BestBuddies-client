@@ -2,16 +2,18 @@
 
 import { UserInfo } from "@/types/user.interface";
 import Image from "next/image";
-import { MapPin, CheckCircle } from "lucide-react"; // Using filled CheckCircle for verified
+import { MapPin, CheckCircle } from "lucide-react"; 
 import Link from "next/link";
 
 interface ExplorerCardProps {
   userInfo: UserInfo;
+  onConnect?: (userId: string) => void;
+  isRequestSent?: boolean; 
 }
 
-const ExplorerCard = ({ userInfo }: ExplorerCardProps) => {
+const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCardProps) => {
   return (
-    <div className="bg-white rounded shadow-md p-4 flex flex-col justify-between w-72 ">
+    <div className="bg-white rounded shadow-md p-4 flex flex-col justify-between w-72">
       <div className="space-y-3">
         <div className="flex items-center space-x-3">
           <div className="relative w-16 h-16">
@@ -29,6 +31,7 @@ const ExplorerCard = ({ userInfo }: ExplorerCardProps) => {
               </div>
             )}
           </div>
+
           <div>
             <h3 className="font-semibold text-lg flex items-center">
               {userInfo.fullName}, {userInfo.age}
@@ -40,17 +43,20 @@ const ExplorerCard = ({ userInfo }: ExplorerCardProps) => {
           </div>
         </div>
 
-  
+    
         <div className="flex flex-wrap gap-2">
           {userInfo.travelInterests?.slice(0, 3).map((interest, idx) => (
-            <span key={idx} className="text-xs bg-gray-100 px-2 py-1 rounded-full">
+            <span
+              key={idx}
+              className="text-xs bg-gray-100 px-2 py-1 rounded-full"
+            >
               #{interest}
             </span>
           ))}
         </div>
       </div>
 
-     
+   
       <div className="flex space-x-2 mt-4">
         <Link
           href={`/explore-travelers/${userInfo.id}`}
@@ -58,8 +64,17 @@ const ExplorerCard = ({ userInfo }: ExplorerCardProps) => {
         >
           View Details
         </Link>
-        <button className="flex-1 py-2 px-3 bg-yellow-400 rounded-lg text-sm text-black font-medium hover:bg-yellow-500">
-          Connect
+
+        <button
+          onClick={() => onConnect && onConnect(userInfo.id)}
+          disabled={isRequestSent}
+          className={`px-4 py-2 rounded flex-1 text-white ${
+            isRequestSent
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-yellow-500 hover:bg-yellow-600"
+          }`}
+        >
+          {isRequestSent ? "Request Sent" : "Connect"}
         </button>
       </div>
     </div>
