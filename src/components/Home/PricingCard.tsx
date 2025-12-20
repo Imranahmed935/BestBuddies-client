@@ -15,7 +15,7 @@ const plans = [
     popular: false,
   },
   {
-    name: "MONTH",
+    name: "MONTHLY",
     price: "$50",
     period: "/month",
     description: "Unlock full access to connect without limits.",
@@ -46,6 +46,7 @@ const PricingCard = () => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
+      console.log(data)
       if (data.success && data.data.url) {
         window.location.href = data.data.url;
       } else {
