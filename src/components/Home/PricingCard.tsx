@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+
+import { serverFetch } from "@/lib/server-fatch";
+import { getUserInfo } from "@/services/auth/getUserInfo";
+import React, { useState } from "react";
 
 const plans = [
   {
-    name: "Solo",
-    price: "Free",
+    name: "WEEKLY",
+    price: "$10",
     period: "/forever",
     description: "Perfect for dipping your toes into the community.",
     buttonText: "Get Started",
@@ -11,8 +15,8 @@ const plans = [
     popular: false,
   },
   {
-    name: "Buddy",
-    price: "$9.99",
+    name: "MONTH",
+    price: "$50",
     period: "/month",
     description: "Unlock full access to connect without limits.",
     buttonText: "Go Premium",
@@ -20,8 +24,8 @@ const plans = [
     popular: true,
   },
   {
-    name: "Squad",
-    price: "$89.99",
+    name: "YEARLY",
+    price: "$100",
     period: "/year",
     description: "Best value for serious travelers and groups.",
     buttonText: "Join the Squad",
@@ -31,6 +35,31 @@ const plans = [
 ];
 
 const PricingCard = () => {
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+  const handleSubscribe = async (planType: string) => {
+    setLoadingPlan(planType);
+    try {
+      const user = await getUserInfo();
+      const res = await serverFetch.post("/payment/create-checkout-session", {
+        body: JSON.stringify({ planType, userId: user.id }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data.success && data.data.url) {
+        window.location.href = data.data.url;
+      } else {
+        alert("Failed to create checkout session.");
+        console.error(data);
+      }
+    } catch (err) {
+      console.error("Checkout error:", err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="text-center mb-12">
@@ -45,9 +74,7 @@ const PricingCard = () => {
           <div
             key={index}
             className={`rounded-2xl p-8 border ${
-              plan.popular
-                ? "border-yellow-400 bg-yellow-50 relative"
-                : "border-gray-200 bg-white"
+              plan.popular ? "border-yellow-400 bg-yellow-50 relative" : "border-gray-200 bg-white"
             } flex flex-col`}
           >
             {plan.popular && (
@@ -64,13 +91,15 @@ const PricingCard = () => {
             <p className="text-gray-500 mt-2">{plan.description}</p>
 
             <button
+              onClick={() => handleSubscribe(plan.name)}
+              disabled={loadingPlan === plan.name}
               className={`mt-6 py-2 rounded-full font-medium text-sm transition ${
                 plan.popular
-                  ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-900"
+                  ? "bg-yellow-400 hover:bg-yellow-500 text-black disabled:opacity-50"
+                  : "bg-gray-200 hover:bg-gray-300 text-gray-900 disabled:opacity-50"
               }`}
             >
-              {plan.buttonText}
+              {loadingPlan === plan.name ? "Processing..." : plan.buttonText}
             </button>
 
             <ul className="mt-6 space-y-2">

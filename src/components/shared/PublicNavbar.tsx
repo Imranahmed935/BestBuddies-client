@@ -23,6 +23,7 @@ const PublicNavbar = async () => {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
           <Link href="/" className="hover:text-black">Home</Link>
           <Link href="/explore-travelers" className="hover:text-black">Explorer</Link>
+          <Link href="/find-buddy" className="hover:text-black">Find Buddy</Link>
           <Link href="/destinations" className="hover:text-black">Destinations</Link>
           <Link href="/about-us" className="hover:text-black">About Us</Link>
           <Link href="/contact-us" className="hover:text-black">Contact Us</Link>
