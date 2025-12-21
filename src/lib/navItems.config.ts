@@ -91,6 +91,12 @@ export const adminNavItems: NavSection[] = [
         roles: ["ADMIN"],
       },
       {
+        title: "All Subscription",
+        href: "/admin/dashboard/all-subscription",
+        icon: "MapPin",
+        roles: ["ADMIN"],
+      },
+      {
         title: "All Review",
         href: "/admin/dashboard/all-review",
         icon: "Review",

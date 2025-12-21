@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import ManagementTable from "@/components/shared/ManagementTable";
 import { UserInfo } from "@/types/user.interface";
 import { useRouter } from "next/navigation";
