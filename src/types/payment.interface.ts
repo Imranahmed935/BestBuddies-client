@@ -18,11 +18,12 @@ export enum PaymentStatus {
 export interface Payment {
   id: string;
   userId: string;
+  user?: UserInfo;
   amount: number;
   paymentGateway: PaymentGateway;
   transactionId: string | null;
   paymentType: PaymentType;
   status: PaymentStatus;
-  createdAt: string; 
-  user?: UserInfo;
+  createdAt: string;
+
 }

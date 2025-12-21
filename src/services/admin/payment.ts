@@ -9,9 +9,7 @@ export const getAllPayments = async () => {
     if (!res.ok) {
       throw new Error("Failed to fetch payment");
     }
-
     const payments = await res.json();
-    console.log(payments.data)
     return payments.data; 
   } catch (error) {
     console.error("Error fetching payments:", error);

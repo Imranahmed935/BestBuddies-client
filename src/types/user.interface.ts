@@ -28,14 +28,12 @@ export interface UserInfo {
   userStatus: Status;
   role: Role;
   verified: boolean;
-
   contactNumber?: string;
-
   rating: number;
   subscriptionActive: boolean;
   subscriptionExpiresAt?: Date | null;
 
-  payments?: Payment;
+  payments?: Payment[];
   hostedPlans?: TravelPlan[];
   joinedPlans?: TravelPlan[];
   reviews?: Review[];
