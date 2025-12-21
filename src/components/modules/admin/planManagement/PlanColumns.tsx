@@ -10,9 +10,9 @@ export const PlanColumns: Column<TravelPlan>[] = [
     header: "Host",
     accessor: (plan) => (
       <UserInfoCell
-        name={plan?.host?.fullName}
-        email={plan?.host?.email}
-        photo={plan?.host?.profileImage}
+        name={plan?.host?.fullName as string}
+        email={plan?.host?.email as string}
+        photo={plan?.host?.profileImage as string}
       />
     ),
   },
