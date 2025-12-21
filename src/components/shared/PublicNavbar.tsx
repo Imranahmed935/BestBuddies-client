@@ -22,11 +22,6 @@ const PublicNavbar = async () => {
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
           <Link href="/" className="hover:text-black">Home</Link>
-          <Link href="/explore-travelers" className="hover:text-black">Explorer</Link>
-          <Link href="/find-buddy" className="hover:text-black">Find Buddy</Link>
-          <Link href="/destinations" className="hover:text-black">Destinations</Link>
-          <Link href="/about-us" className="hover:text-black">About Us</Link>
-          <Link href="/contact-us" className="hover:text-black">Contact Us</Link>
           {accessToken && userRole && (
             <Link
               href={userRole === "ADMIN" ? "/admin/dashboard" : "/user/dashboard"}
@@ -35,6 +30,11 @@ const PublicNavbar = async () => {
               Dashboard
             </Link>
           )}
+          <Link href="/explore-travelers" className="hover:text-black">Explorer</Link>
+          <Link href="/find-buddy" className="hover:text-black">Find Buddy</Link>
+          <Link href="/destinations" className="hover:text-black">Destinations</Link>
+          <Link href="/about-us" className="hover:text-black">About Us</Link>
+          <Link href="/contact-us" className="hover:text-black">Contact Us</Link>
         </div>
 
         {accessToken ? (
@@ -43,7 +43,7 @@ const PublicNavbar = async () => {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="border border-yellow-400 text-black hover:bg-yellow-400 hover:text-black font-semibold text-sm px-5 py-2 rounded-full transition"
+              className=" text-black hover:bg-yellow-400 hover:text-black font-semibold text-sm px-5 py-2 rounded-full transition"
             >
               Login
             </Link>
