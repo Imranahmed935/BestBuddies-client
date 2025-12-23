@@ -87,6 +87,7 @@ export async function updateMyPlan(
   formData: FormData
 ) {
   const file = formData.get("file") as File | null;
+  console.log(file)
   const payload = {
     title: formData.get("title") as string,
     destination: formData.get("destination") as string,
@@ -127,6 +128,7 @@ export async function updateMyPlan(
     });
 
     const result = await response.json();
+    console.log(result)
     return result;
 
   } catch (error: any) {

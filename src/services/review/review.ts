@@ -1,0 +1,75 @@
+"use server";
+
+import { serverFetch } from "@/lib/server-fatch";
+
+
+
+interface ReviewPayload {
+  id?:string
+  rating: number;
+  comment: string;
+  travelPlanId: string;
+  reviewerId: string;
+}
+
+export const getReviews = async (id: string ) => {
+  try {
+    const res = await serverFetch.get(`/review/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch reviews");
+    const data = await res.json();
+    console.log(data)
+    return data;
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return null;
+  }
+};
+
+
+export const getAllTestimonial = async () => {
+  try {
+    const res = await serverFetch.get("/review");
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+
+export const updateReview = async (id: string, payload: Partial<ReviewPayload>) => {
+  try {
+    const res = await serverFetch.patch(`/review/${id}`, {
+      method: "PATCH", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload), 
+    });
+
+    if (!res.ok) throw new Error("Failed to update review");
+
+    const data = await res.json();
+    return data; 
+  } catch (error) {
+    console.error("Error updating review:", error);
+    return null;
+  }
+};
+
+
+
+export const deleteReview = async (id: string) => {
+  try {
+    const res = await serverFetch.delete(`/review/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) throw new Error("Failed to delete review");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    return null;
+  }
+};

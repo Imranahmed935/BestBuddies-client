@@ -38,6 +38,7 @@ export const userNavItems: NavSection[] = [
     ],
   },
   ...exploreNavItems,
+  
   {
     title: "Reviews & Ratings",
     items: [

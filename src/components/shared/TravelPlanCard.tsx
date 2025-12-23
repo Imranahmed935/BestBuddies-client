@@ -16,6 +16,13 @@ const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
     day: "numeric",
   });
 
+  const statusStyles: Record<string, string> = {
+    OPEN: "bg-green-100 text-green-700 border-green-300",
+    FULL: "bg-yellow-100 text-yellow-700 border-yellow-300",
+    CLOSED: "bg-gray-200 text-gray-700 border-gray-300",
+    CANCELLED: "bg-red-100 text-red-700 border-red-300",
+  };
+
   return (
     <div className="w-full rounded-2xl overflow-hidden bg-white shadow-md border hover:shadow-lg transition">
       {/* Image Section */}
@@ -68,27 +75,40 @@ const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Image
-            src={host?.profileImage || "/user-placeholder.png"}
-            alt={host?.fullName || "Host"}
-            width={36}
-            height={36}
-            className="rounded-full object-cover border"
-          />
+        <div className="flex items-center justify-between gap-3">
+          {/* Host Info */}
+          <div className="flex items-center gap-3">
+            <Image
+              src={host?.profileImage || "/user-placeholder.png"}
+              alt={host?.fullName || "Host"}
+              width={32}
+              height={32}
+              className="rounded-full object-cover border"
+            />
 
-          <div className="text-sm leading-tight">
-            <p className="font-medium text-gray-800">
-              {host?.fullName || "Unknown Host"}
-            </p>
-
-            {host?.currentLocation && (
-              <p className="text-xs text-gray-500 flex items-center gap-1">
-                <MapPin size={12} />
-                {host.currentLocation}
+            <div className="text-sm leading-tight">
+              <p className="font-medium text-gray-800">
+                {host?.fullName || "Unknown Host"}
               </p>
-            )}
+
+              {host?.currentLocation && (
+                <p className="text-xs text-gray-500 flex items-center gap-1">
+                  <MapPin size={12} />
+                  {host.currentLocation}
+                </p>
+              )}
+            </div>
           </div>
+
+          {/* Status Badge */}
+          <span
+            className={`px-3 py-1 text-xs font-semibold rounded-full border ${
+              statusStyles[travel.planStatus] ||
+              "bg-gray-100 text-gray-600 border-gray-300"
+            }`}
+          >
+            {travel.planStatus}
+          </span>
         </div>
 
         <div className="flex gap-3 pt-3">

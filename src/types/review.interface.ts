@@ -12,3 +12,20 @@ export interface Review {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface TReview {
+  id: string;
+  rating: number;
+  comment: string;
+  reviewer: {
+    fullName: string;
+    email: string;
+    profileImage?: string | null;
+  };
+  travelPlan: {
+    id: string;
+    title: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}

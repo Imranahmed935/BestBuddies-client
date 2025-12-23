@@ -9,7 +9,7 @@ export type RouteConfig = {
 export const authRoutes = ["/login", "/register", "/forgot-password", ];
 
 export const commonProtectedRoutes: RouteConfig = {
-    exact: ["/my-profile", "/settings"],
+    exact: ["/my-profile", "/settings",],
     patterns: [], 
 }
 

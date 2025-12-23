@@ -254,7 +254,7 @@ const MyPlanFormDialog = ({
         {/* Photo Upload */}
         <Field>
           <FieldLabel>Photo</FieldLabel>
-          <Input type="file" name="photo" />
+          <Input type="file" name="file" />
         </Field>
 
         {/* Plan Status */}
