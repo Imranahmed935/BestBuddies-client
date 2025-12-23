@@ -7,6 +7,61 @@ interface SendConnectionPayload {
   receiverId: string;
 }
 
+
+export async function getMyFriends() {
+  try {
+    const response = await serverFetch.get("/connection/friends");
+    const result = await response.json();
+    return {
+      success: result.success,
+      data: result.data || null,
+      message: result.message,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      data: null,
+      message: error.message,
+    };
+  }
+}
+
+
+export async function respondConnection(
+  connectionId: string,
+  action: "ACCEPT" | "REJECT"
+) {
+  try {
+    const token = getCookie("accessToken") || "";
+
+    const response = await serverFetch.patch("/connection/respond", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        connectionId,
+        action,
+      }),
+    });
+
+    const result = await response.json();
+
+    console.log(result)
+
+    return {
+      success: result.success,
+      data: result.data || null,
+      message: result.message,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      data: null,
+      message: error.message,
+    };
+  }
+}
 export async function sendConnection(payload: SendConnectionPayload) {
   try {
     
@@ -37,6 +92,7 @@ export async function sendConnection(payload: SendConnectionPayload) {
     };
   }
 }
+
 
 
 export async function getPendingRequests() {

@@ -27,6 +27,16 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
 
 export const userNavItems: NavSection[] = [
   {
+    items: [
+      {
+        title: "My Friends",
+        href: "/dashboard/my-friend",
+        icon: "Users",
+        roles: ["USER"],
+      },
+    ],
+  },
+  {
     title: "Travel Plans",
     items: [
       {
