@@ -43,7 +43,7 @@ const PublicNavbar = async () => {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className=" text-black hover:bg-yellow-400 hover:text-black font-semibold text-sm px-5 py-2 rounded-full transition"
+              className=" text-black  hover:text-black font-semibold text-sm px-5 py-2 rounded-full transition"
             >
               Login
             </Link>

@@ -1,9 +1,15 @@
+"use client"
 import Image from "next/image";
 import { MapPin, CalendarDays } from "lucide-react";
 import { TravelPlan } from "@/types/travelPlan.interface";
 import Link from "next/link";
 
-const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
+interface JoinRequestCardProps {
+  travel: TravelPlan;
+  handleJoinTrip: (planId: string) => void;
+}
+
+const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
   const host = travel?.host;
 
   const start = new Date(travel?.startDate).toLocaleDateString("en-US", {
@@ -120,6 +126,7 @@ const TravelPlanCard = ({ travel }: { travel: TravelPlan }) => {
           </Link>
 
           <button
+          onClick={()=>handleJoinTrip(travel.id)}
             type="button"
             className="flex-1 inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-sm font-semibold py-2 rounded-full transition"
           >

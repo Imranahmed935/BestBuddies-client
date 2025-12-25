@@ -47,8 +47,6 @@ export async function respondConnection(
 
     const result = await response.json();
 
-    console.log(result)
-
     return {
       success: result.success,
       data: result.data || null,
@@ -62,6 +60,7 @@ export async function respondConnection(
     };
   }
 }
+
 export async function sendConnection(payload: SendConnectionPayload) {
   try {
     
@@ -77,8 +76,7 @@ export async function sendConnection(payload: SendConnectionPayload) {
     });
 
     const result = await response.json();
-   
-
+  
     return {
       success: result.success,
       data: result.data || null,
@@ -92,8 +90,6 @@ export async function sendConnection(payload: SendConnectionPayload) {
     };
   }
 }
-
-
 
 export async function getPendingRequests() {
   try {

@@ -28,8 +28,7 @@ const FriendPage = () => {
   }, []);
 
   const handleRequest = async (id: string, action: any) => {
-    const data = await respondConnection(id, action);
-    console.log(data);
+   await respondConnection(id, action);
   };
 
   return (

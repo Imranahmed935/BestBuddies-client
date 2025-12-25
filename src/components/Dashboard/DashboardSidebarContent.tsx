@@ -3,12 +3,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area"; 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserInfo } from "@/types/user.interface";
 import { NavSection } from "@/types/dashboard.interface";
 import { getIconComponent } from "@/lib/icon-mapper";
+import LogoPage from "../shared/LogoPage";
 
 interface DashboardSidebarContentProps {
   userInfo: UserInfo;
@@ -28,9 +29,7 @@ const DashboardSidebarContent = ({
       {/* Logo */}
       <div className="flex h-16 items-center border-b px-6">
         <Link href={dashboardHome} className="flex items-center space-x-2">
-          <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            BestBuddies
-          </span>
+          <LogoPage />
         </Link>
       </div>
 
@@ -95,9 +94,7 @@ const DashboardSidebarContent = ({
           </div>
 
           <div className="flex-1 overflow-hidden">
-            <p className="text-sm font-medium truncate">
-              {userInfo.fullName}
-            </p>
+            <p className="text-sm font-medium truncate">{userInfo.fullName}</p>
             <p className="text-xs text-muted-foreground capitalize">
               {userInfo.role.toLowerCase()}
             </p>

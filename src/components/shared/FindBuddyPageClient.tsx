@@ -1,6 +1,7 @@
 "use client";
 import FindBuddyCard from "@/components/shared/FindBuddyCard";
 import TravelPlanCard from "@/components/shared/TravelPlanCard";
+import { sendJoinRequest } from "@/services/join/join";
 
 import { TravelPlan } from "@/types/travelPlan.interface";
 import { useState, useMemo } from "react";
@@ -25,6 +26,10 @@ export const FindBuddyPageClient = ({ plans }: { plans: TravelPlan[] }) => {
     return result;
   }, [plans, destination, sortPrice]);
 
+  const handleJoinTrip = async (planId: string)=>{
+    const data = await sendJoinRequest(planId)
+    console.log(data)
+  }
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
       <FindBuddyCard />
@@ -58,7 +63,7 @@ export const FindBuddyPageClient = ({ plans }: { plans: TravelPlan[] }) => {
           </p>
         ) : (
           filteredPlans.map((plan) => (
-            <TravelPlanCard key={plan.id} travel={plan} />
+            <TravelPlanCard key={plan.id} travel={plan} handleJoinTrip={handleJoinTrip}/>
           ))
         )}
       </div>

@@ -17,7 +17,9 @@ const serverFetchHelper = async (
     headers: {
       Cookie: accessToken ? `accessToken=${accessToken}` : "",
       ...headers,
+      
     },
+     credentials: "include",
     ...restOptions,
   });
 
