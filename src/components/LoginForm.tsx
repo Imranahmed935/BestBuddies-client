@@ -9,23 +9,35 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { loginUser } from "@/services/auth/loginUser";
-import { toast } from "sonner"; 
+import { toast } from "sonner";
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [state, action, isPending] = useActionState(loginUser, null);
-  useEffect(() => {
 
-    if (state && state.success) {
-      toast.success("Logged in successfully!");
-    } 
-
-    if (state && !state.success && state.message) {
-      toast.error(state.message);
+  // Demo autofill function
+  const handleAutoFill = (role: "ADMIN" | "USER") => {
+    if (role === "ADMIN") {
+      setEmail("admin@gmail.com");
+      setPassword("12345678");
+    } else if (role === "USER") {
+      setEmail("imam@gmail.com");
+      setPassword("123456");
     }
+    toast.info(`Auto-filled ${role} credentials`);
+  };
+
+  // Toast messages for login
+  useEffect(() => {
+    if (state && state.success) toast.success("Logged in successfully!");
+    if (state && !state.success && state.message) toast.error(state.message);
   }, [state]);
+
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
+      {/* Left Image */}
       <div className="hidden md:flex items-center justify-center relative">
         <img
           src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
@@ -42,6 +54,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
         </div>
       </div>
 
+      {/* Right Form */}
       <div className="flex items-center justify-center px-6">
         <div className="w-full max-w-md">
           <h2 className="text-3xl font-bold mb-2">Welcome back!</h2>
@@ -53,7 +66,14 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" name="email" type="email" placeholder="imran@example.com" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="imran@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </Field>
 
               <Field>
@@ -64,6 +84,8 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                     name="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <button
                     type="button"
@@ -85,11 +107,39 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             </Button>
           </form>
 
+          {/* Demo Credentials Card */}
+          <div className="mt-6 space-y-3">
+            <p className="font-semibold text-sm">Demo Credentials</p>
+
+            <div className="flex justify-between items-center rounded-lg border p-3 text-sm">
+              <div>
+                <p className="font-medium">Admin</p>
+                <p className="font-mono">admin@gmail.com</p>
+                <p className="font-mono">12345678</p>
+              </div>
+              <Button type="button" variant="outline" onClick={() => handleAutoFill("ADMIN")}>
+                Use
+              </Button>
+            </div>
+
+            <div className="flex justify-between items-center rounded-lg border p-3 text-sm">
+              <div>
+                <p className="font-medium">User</p>
+                <p className="font-mono">imam@gmail.com</p>
+                <p className="font-mono">123456</p>
+              </div>
+              <Button type="button" variant="outline" onClick={() => handleAutoFill("USER")}>
+                Use
+              </Button>
+            </div>
+          </div>
+
           <div className="flex items-center my-8">
             <div className="flex-grow h-px bg-gray-200" />
             <span className="px-4 text-xs text-gray-400">OR CONTINUE WITH</span>
             <div className="flex-grow h-px bg-gray-200" />
           </div>
+
           <p className="text-center text-sm text-gray-500 mt-8">
             Don’t have an account?{" "}
             <Link href="/register" className="text-blue-500 font-medium">

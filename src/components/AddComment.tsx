@@ -85,7 +85,7 @@ const AddComment = ({ details, onReviewAdded }: AddCommentProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Comment</Button>
+        <Button variant="outline" className="bg-yellow-400 hover:bg-yellow-500 transition">Add Comment</Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
@@ -124,7 +124,7 @@ const AddComment = ({ details, onReviewAdded }: AddCommentProps) => {
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="submit" disabled={submitting || !userInfo}>
+            <Button type="submit" disabled={submitting || !userInfo} className="bg-yellow-400 text-black hover:bg-yellow-500 transition">
               {submitting ? "Submitting..." : "Submit Review"}
             </Button>
           </DialogFooter>

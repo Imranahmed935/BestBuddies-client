@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import LoginForm from '@/components/LoginForm';
 
-
-const LoginPage = () => {
+const LoginPage = async () => {
+   
     return (
         <div>
             <LoginForm/>
