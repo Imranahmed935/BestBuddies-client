@@ -24,6 +24,7 @@ const COLORS = [
   "#6366F1",
 ];
 
+
 const DailyUsers = () => {
   const [dailyUsers, setDailyUsers] = useState<
     { date: string; count: number }[]
@@ -40,18 +41,15 @@ const DailyUsers = () => {
     load();
   }, []);
 
-  // Total count for percentage
   const total = dailyUsers.reduce((a, b) => a + b.count, 0);
 
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-200 transition-all duration-300">
-  
       <h1 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
         📊 Daily Registered Users
       </h1>
 
       <div className="flex items-center justify-between gap-6">
-       
         <ResponsiveContainer width="60%" height={280}>
           <PieChart>
             <Pie
@@ -61,17 +59,21 @@ const DailyUsers = () => {
               paddingAngle={3}
               dataKey="count"
               nameKey="date"
-              label={({ value }) => (
-                <text
-                  fill="#fff"
-                  fontSize={12}
-                  fontWeight={600}
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                >
-                  {((value / total) * 100).toFixed(1)}%
-                </text>
-              )}
+              label={({ value }) => {
+                if (!value || total === 0) return null;
+
+                return (
+                  <text
+                    fill="#fff"
+                    fontSize={12}
+                    fontWeight={600}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                  >
+                    {((value / total) * 100).toFixed(1)}%
+                  </text>
+                );
+              }}
             >
               {dailyUsers.map((_, i) => (
                 <Cell key={i} fill={COLORS[i % COLORS.length]} />
@@ -79,15 +81,15 @@ const DailyUsers = () => {
             </Pie>
 
             <Tooltip
-              formatter={(value: number, name: string, props: any) => [
-                `${value} users`,
-                props.payload.date,
-              ]}
+              formatter={(
+                value: number | undefined,
+                _name: string | undefined,
+                props: any
+              ) => [`${value ?? 0} users`, props?.payload?.date ?? ""]}
             />
           </PieChart>
         </ResponsiveContainer>
-
-        {/* LEGEND */}
+        
         <div className="space-y-3">
           {dailyUsers.map((item, index) => (
             <div key={index} className="flex items-center gap-3">

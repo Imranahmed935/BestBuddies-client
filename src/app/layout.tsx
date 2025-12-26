@@ -7,6 +7,7 @@ import { ToastContainer} from 'react-toastify';
 import Notifications from "@/components/Notifications";
 import LoginSuccessToast from "@/components/shared/LoginSuccessToast";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,7 +41,9 @@ export default function RootLayout({
         <Toaster position="top-right" richColors />
         <Notifications/>
         <ToastContainer/>
-        <LoginSuccessToast/>
+        <Suspense fallback={null}>
+            <LoginSuccessToast/>
+           </Suspense>
       </body>
     </html>
   );
