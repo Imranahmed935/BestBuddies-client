@@ -12,10 +12,20 @@ import {
   Legend,
 } from "recharts";
 
-const COLORS = ["#3B82F6", "#8B5CF6", "#10B981", "#F59E0B", "#EF4444", "#14B8A6", "#6366F1"];
+const COLORS = [
+  "#3B82F6",
+  "#8B5CF6",
+  "#10B981",
+  "#F59E0B",
+  "#EF4444",
+  "#14B8A6",
+  "#6366F1",
+];
 
 const DailyPlan = () => {
-  const [dailyPlans, setDailyPlans] = useState<{ date: string; count: number }[]>([]);
+  const [dailyPlans, setDailyPlans] = useState<
+    { date: string; count: number }[]
+  >([]);
 
   useEffect(() => {
     const load = async () => {
@@ -41,20 +51,28 @@ const DailyPlan = () => {
             <Pie
               data={dailyPlans}
               outerRadius={80}
-              innerRadius={40} // makes it a donut
+              innerRadius={40}
               dataKey="count"
               nameKey="date"
-              label={({ name, percent }) => `${(percent! * 100).toFixed(1)}%`} // percentage inside slices
+              label={({ name, percent }) => `${(percent! * 100).toFixed(1)}%`}
             >
               {dailyPlans.map((_, i) => (
                 <Cell key={i} fill={COLORS[i % COLORS.length]} />
               ))}
             </Pie>
             <Tooltip
-              formatter={(value: number, name: string) => [
-                `${value} (${((value / totalCount) * 100).toFixed(1)}%)`,
-                name,
-              ]}
+              formatter={(
+                value: number | undefined,
+                name: string | undefined
+              ) => {
+                const safeValue = value ?? 0;
+                const percentage =
+                  totalCount > 0
+                    ? ((safeValue / totalCount) * 100).toFixed(1)
+                    : "0.0";
+
+                return [`${safeValue} (${percentage}%)`, name];
+              }}
             />
           </PieChart>
         </ResponsiveContainer>
@@ -64,8 +82,10 @@ const DailyPlan = () => {
           verticalAlign="middle"
           align="left"
           formatter={(value, entry) => {
-            const plan = dailyPlans.find(p => p.date === value);
-            const percent = plan ? ((plan.count / totalCount) * 100).toFixed(1) : "0.0";
+            const plan = dailyPlans.find((p) => p.date === value);
+            const percent = plan
+              ? ((plan.count / totalCount) * 100).toFixed(1)
+              : "0.0";
             return `${value} — ${percent}%`;
           }}
         />

@@ -36,39 +36,46 @@ const DailyReview = () => {
       </h1>
 
       <div className="flex items-center justify-between gap-4">
-        <ResponsiveContainer width="60%" height={250}>
+        <ResponsiveContainer width="100%" height={250}>
           <PieChart>
             <Pie
               data={dailyReviews}
               outerRadius={80}
-              innerRadius={40} 
+              innerRadius={40}
               dataKey="count"
               nameKey="date"
-              label={({ percent }) => `${(percent! * 100).toFixed(1)}%`} 
+              label={({ percent }) => `${((percent || 0) * 100).toFixed(1)}%`}
             >
               {dailyReviews.map((_, i) => (
-                <Cell key={i} fill={COLORS[i % COLORS?.length]} />
+                <Cell key={i} fill={COLORS[i % COLORS.length]} />
               ))}
             </Pie>
+            
             <Tooltip
-              formatter={(value: number, name: string ) => [
-                `${value} (${((value / totalCount) * 100).toFixed(1)}%)`,
-                name,
-              ]}
+              formatter={(value: number | undefined, name: string | undefined) => {
+                const safeValue = value ?? 0;
+                const percentage = totalCount > 0 
+                  ? ((safeValue / totalCount) * 100).toFixed(1) 
+                  : "0.0";
+                
+                return [`${safeValue} (${percentage}%)`, name ?? "Unknown"];
+              }}
+            />
+
+            <Legend
+              layout="vertical"
+              verticalAlign="middle"
+              align="right"
+              formatter={(value) => {
+                const review = dailyReviews.find(r => r.date === value);
+                const percent = totalCount > 0 && review 
+                  ? ((review.count / totalCount) * 100).toFixed(1) 
+                  : "0.0";
+                return <span className="text-sm text-gray-700">{value} — {percent}%</span>;
+              }}
             />
           </PieChart>
         </ResponsiveContainer>
-
-        <Legend
-          layout="vertical"
-          verticalAlign="middle"
-          align="left"
-          formatter={(value) => {
-            const review = dailyReviews.find(r => r.date === value);
-            const percent = review ? ((review.count / totalCount) * 100).toFixed(1) : "0.0";
-            return `${value} — ${percent}%`;
-          }}
-        />
       </div>
     </div>
   );
