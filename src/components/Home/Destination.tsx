@@ -1,37 +1,46 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+import { getAllPlan } from "@/services/travel/travelPlan";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
-const destinations = [
-  {
-    id: 1,
-    name: "Bali",
-    country: "Indonesia",
-    buddies: "450+ Buddies",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-  },
-  {
-    id: 2,
-    name: "Reykjavik",
-    country: "Iceland",
-    buddies: "120+ Buddies",
-    image:
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-  },
-  {
-    id: 3,
-    name: "Kyoto",
-    country: "Japan",
-    buddies: "340+ Buddies",
-    image:
-      "https://images.unsplash.com/photo-1549692520-acc6669e2f0c",
-  },
-];
+interface DestinationItem {
+  id: string;
+  name: string;
+  country: string;
+  photoUrl: string;
+  buddies?: number;
+}
 
 const Destination = () => {
+  const [destinations, setDestinations] = useState<DestinationItem[]>([]);
+
+  useEffect(() => {
+    const fetchTopDestinations = async () => {
+      try {
+        const res = await getAllPlan();
+        const plans = res.data;
+
+        const destinationList = plans.map((plan: any) => ({
+          id: plan.id,
+          name: plan.destination,
+          country: plan.destination,
+          photoUrl: plan.photoUrl || "/default-destination.jpg",
+          buddies: plan.joinedParticipants?.length || 0,
+        }));
+
+        setDestinations(destinationList.slice(1, 4));
+      } catch (error) {
+        console.error("Error fetching destinations:", error);
+      }
+    };
+
+    fetchTopDestinations();
+  }, []);
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <div>
             <h2 className="text-3xl font-bold">Popular Destinations</h2>
@@ -39,45 +48,42 @@ const Destination = () => {
               Trending places our community is exploring right now.
             </p>
           </div>
-
-          <button className="text-sm font-medium text-gray-700 hover:text-yellow-400 transition flex items-center gap-1">
-            See all →
-          </button>
+          <Link href={`/find-buddy`} className="text-sm font-medium text-gray-700 hover:text-yellow-400 transition flex items-center gap-1">
+            See all → 
+          </Link>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {destinations.map((item) => (
             <div
               key={item.id}
               className="relative h-[420px] rounded-3xl overflow-hidden group"
             >
-              {/* Image */}
               <img
-                src={item.image}
+                src={item.photoUrl}
                 alt={item.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-              {/* Buddies badge */}
               <span className="absolute top-4 right-4 px-3 py-1 text-xs rounded-full bg-white/80 backdrop-blur text-gray-800">
                 {item.buddies}
               </span>
 
-              {/* Content */}
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h3 className="text-xl font-semibold mb-1">{item.name}</h3>
-                <p className="text-sm text-gray-200 mb-4 flex items-center gap-1">
+              <div className="absolute bottom-6 left-6 right-6 text-white flex flex-col gap-2">
+                <h3 className="text-xl font-semibold">{item.name}</h3>
+                <p className="text-sm text-gray-200 flex items-center gap-1">
                   <span className="w-2 h-2 bg-yellow-400 rounded-full" />
                   {item.country}
                 </p>
 
-                <button className="w-full py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-yellow-400 hover:text-black transition">
+                <Link
+                  href={`/find-buddy/${item.id}`}
+                  className="w-full py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-yellow-400 hover:text-black transition text-center flex items-center justify-center"
+                >
                   Find Buddy in {item.name}
-                </button>
+                </Link>
               </div>
             </div>
           ))}
