@@ -75,7 +75,7 @@ const PricingCard = () => {
           <div
             key={index}
             className={`rounded-2xl p-8 border ${
-              plan.popular ? "border-yellow-400 bg-yellow-50 relative" : "border-gray-200 bg-white"
+              plan.popular ? "border-yellow-400 bg-yellow-50 relative" : "border-yellow-400 bg-white"
             } flex flex-col`}
           >
             {plan.popular && (
@@ -97,7 +97,7 @@ const PricingCard = () => {
               className={`mt-6 py-2 rounded-full font-medium text-sm transition ${
                 plan.popular
                   ? "bg-yellow-400 hover:bg-yellow-500 text-black disabled:opacity-50"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-900 disabled:opacity-50"
+                  : "bg-yellow-400 hover:bg-yellow-500 text-gray-900 disabled:opacity-50"
               }`}
             >
               {loadingPlan === plan.name ? "Processing..." : plan.buttonText}

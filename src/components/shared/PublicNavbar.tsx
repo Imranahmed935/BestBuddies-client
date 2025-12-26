@@ -32,7 +32,6 @@ const PublicNavbar = async () => {
           )}
           <Link href="/explore-travelers" className="hover:text-black">Explorer</Link>
           <Link href="/find-buddy" className="hover:text-black">Find Buddy</Link>
-          <Link href="/destinations" className="hover:text-black">Destinations</Link>
           <Link href="/about-us" className="hover:text-black">About Us</Link>
           <Link href="/contact-us" className="hover:text-black">Contact Us</Link>
         </div>

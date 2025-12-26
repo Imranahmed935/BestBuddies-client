@@ -22,7 +22,7 @@ const Review = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       const res = await getAllTestimonial();
-      setReviews(res?.data || []);
+      setReviews(res || []);
     };
     fetchReviews();
   }, []);
@@ -43,7 +43,7 @@ const Review = () => {
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="mx-4 w-80 rounded-3xl bg-white/70 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-6"
+              className="mx-4 w-80 rounded-3xl bg-white/70 backdrop-blur-md border border-yellow-400 shadow-sm hover:shadow-md transition-shadow duration-300 p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <img
