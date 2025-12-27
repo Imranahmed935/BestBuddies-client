@@ -8,7 +8,7 @@ This repository contains of the BestBuddies application, built with performance,
 ---
 
 ## 🚀 Live Demo
-👉 *(Add live frontend URL here if deployed)*
+👉 *([https://best-buddies-client.vercel.app](https://best-buddies-client.vercel.app))*
 
 ---
 
