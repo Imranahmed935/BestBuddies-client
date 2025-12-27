@@ -1,8 +1,15 @@
 import Link from "next/link";
-import LogoPage from "./LogoPage";
+
 import LogoutButton from "./LogOutButton";
 import { getCookie } from "@/services/auth/tokenHandlers";
 import { getUserInfo } from "@/services/auth/getUserInfo";
+import NavLinks from "./Navlinks";
+import MobileMenu from "./MobileMenu";
+import Logo from "./LogoPage";
+import { ModeToggle } from "../mode-toggler";
+
+
+
 
 const PublicNavbar = async () => {
   const accessToken = await getCookie("accessToken");
@@ -12,48 +19,41 @@ const PublicNavbar = async () => {
     const userInfo = await getUserInfo();
     userRole = userInfo?.role || null;
   }
+  const dashboardHref = userRole === "ADMIN" ? "/admin/dashboard" : "/dashboard";
 
   return (
-    <nav className="w-full bg-white border-b">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <LogoPage />
-        </div>
-
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-          <Link href="/" className="hover:text-black">Home</Link>
-          {accessToken && userRole && (
-            <Link
-              href={userRole === "ADMIN" ? "/admin/dashboard" : "/user/dashboard"}
-              className="hover:text-black font-semibold"
-            >
-              Dashboard
-            </Link>
-          )}
-          <Link href="/explore-travelers" className="hover:text-black">Explorer</Link>
-          <Link href="/find-buddy" className="hover:text-black">Find Buddy</Link>
-          <Link href="/about-us" className="hover:text-black">About Us</Link>
-          <Link href="/contact-us" className="hover:text-black">Contact Us</Link>
-        </div>
-
-        {accessToken ? (
-          <LogoutButton />
-        ) : (
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className=" text-black  hover:text-black font-semibold text-sm px-5 py-2 rounded-full transition"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold text-sm px-5 py-2 rounded-full transition"
-            >
-              Join Now
-            </Link>
+    <nav className="w-full sticky top-0 z-50 bg-white dark:bg-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0 flex items-center">
+            <Logo />
           </div>
-        )}
+          <div className="hidden md:flex items-center space-x-4">
+            <NavLinks accessToken={!!accessToken} dashboardHref={dashboardHref} />
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3">
+               <ModeToggle/>
+              {accessToken ? (
+                <LogoutButton />
+              ) : (
+                <>
+                  <Link href="/login" className="text-sm font-semibold px-4 py-2 dark:text-white">Login</Link>
+                  <Link href="/register" className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold text-sm px-5 py-2 rounded-full transition">
+                    Join Now
+                  </Link>
+                </>
+              )}
+            </div>
+
+            <MobileMenu 
+                accessToken={!!accessToken} 
+                dashboardHref={dashboardHref}
+                logoutButton={accessToken ? <LogoutButton /> : null}
+            />
+          </div>
+        </div>
       </div>
     </nav>
   );

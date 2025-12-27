@@ -30,8 +30,7 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
   };
 
   return (
-    <div className="w-full rounded-2xl overflow-hidden bg-white shadow-md border hover:shadow-lg transition">
-      {/* Image Section */}
+    <div className="w-full rounded-2xl overflow-hidden bg-white dark:bg-accent shadow-md border hover:shadow-lg transition">
       <div className="relative h-[200px]">
         <Image
           src={travel.photoUrl || "/placeholder.jpg"}
@@ -40,8 +39,6 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
           priority
           className="object-cover"
         />
-
-        {/* Badges */}
         <div className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium">
           {travel.members} spots left
         </div>
@@ -50,7 +47,6 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
           ${travel?.budget} est.
         </div>
 
-        {/* Title */}
         <div className="absolute bottom-3 left-3 right-3 text-white">
           <span className="text-xs flex items-center gap-1 text-yellow-400 font-semibold mb-1">
             <MapPin size={14} />
@@ -82,7 +78,6 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
         </div>
 
         <div className="flex items-center justify-between gap-3">
-          {/* Host Info */}
           <div className="flex items-center gap-3">
             <Image
               src={host?.profileImage || "/user-placeholder.png"}
@@ -93,7 +88,7 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
             />
 
             <div className="text-sm leading-tight">
-              <p className="font-medium text-gray-800">
+              <p className="font-medium text-gray-800 dark:text-gray-200">
                 {host?.fullName || "Unknown Host"}
               </p>
 
@@ -106,7 +101,6 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
             </div>
           </div>
 
-          {/* Status Badge */}
           <span
             className={`px-3 py-1 text-xs font-semibold rounded-full border ${
               statusStyles[travel.planStatus] ||
@@ -120,7 +114,7 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
         <div className="flex gap-3 pt-3">
           <Link
             href={`/find-buddy/${travel.id}`}
-            className="flex-1 inline-flex items-center justify-center border border-gray-300 text-sm font-medium py-2 rounded-full hover:bg-gray-100 transition"
+            className="flex-1 inline-flex items-center justify-center dark:hover:text-black border border-gray-300 text-sm font-medium py-2 rounded-full hover:bg-gray-100 transition"
           >
             Details
           </Link>
@@ -128,7 +122,7 @@ const TravelPlanCard = ({ travel, handleJoinTrip }: JoinRequestCardProps) => {
           <button
           onClick={()=>handleJoinTrip(travel.id)}
             type="button"
-            className="flex-1 inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-500 text-sm font-semibold py-2 rounded-full transition"
+            className="flex-1 inline-flex items-center justify-center dark:text-black bg-yellow-400 hover:bg-yellow-500 text-sm font-semibold py-2 rounded-full transition"
           >
             Join Trip →
           </button>

@@ -21,18 +21,18 @@ const UserDashboardPage = async () => {
       <div>
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-300">
               Welcome back{" "}
               <span className="text-yellow-500">{loginUser?.fullName}</span>👋
             </h1>
-            <p className="text-gray-500 mt-1">
+            <p className="text-gray-500 mt-1 dark:text-gray-500">
               Here’s a quick overview of your activity
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="relative overflow-hidden rounded-2xl bg-[#eafffaf5] p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+          <div className="relative overflow-hidden rounded-2xl bg-[#eafffaf5] dark:bg-accent p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
           
 
             <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-yellow-400/15 mb-4">
@@ -40,12 +40,12 @@ const UserDashboardPage = async () => {
             </div>
 
             <p className="text-sm text-gray-500">Total Plans</p>
-            <h3 className="text-4xl font-bold text-gray-900 mt-1">
+            <h3 className="text-4xl font-bold text-gray-900 mt-1 dark:text-gray-200">
               {totalPlan?.data?.length}
             </h3>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl bg-[#faf9ef] p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+          <div className="relative overflow-hidden rounded-2xl bg-[#faf9ef] dark:bg-accent p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
          
 
             <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-yellow-400/15 mb-4">
@@ -53,20 +53,20 @@ const UserDashboardPage = async () => {
             </div>
 
             <p className="text-sm text-gray-500">Friends</p>
-            <h3 className="text-4xl font-bold text-gray-900 mt-1">
+            <h3 className="text-4xl font-bold text-gray-900 mt-1 dark:text-gray-200">
               {totalFriends?.data?.length}
             </h3>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl bg-[#f1fff6fa] p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+          <div className="relative overflow-hidden rounded-2xl bg-[#f1fff6fa] dark:bg-accent p-6 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
            
 
-            <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-yellow-400/15 mb-4">
+            <div className="w-14 h-14 flex items-center justify-center rounded-2xl dark:bg-accent bg-yellow-400/15 mb-4">
               <Star className="text-yellow-400" size={26} />
             </div>
 
             <p className="text-sm text-gray-500">Reviews</p>
-            <h3 className="text-4xl font-bold text-gray-900 mt-1">
+            <h3 className="text-4xl font-bold text-gray-900 mt-1 dark:text-gray-200">
               {totalReviews?.data?.length}
             </h3>
           </div>
@@ -74,14 +74,14 @@ const UserDashboardPage = async () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-3xl p-8 shadow-sm">
+            <div className="bg-white dark:bg-accent rounded-3xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-4">
                 <Star className="text-yellow-400" />
-                <h2 className="text-xl font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                   Top Review
                 </h2>
               </div>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed dark:text-gray-400">
                 “Wow, this guy is awesome! Had an amazing travel experience and
                 would definitely recommend.”
               </p>
@@ -97,17 +97,17 @@ const UserDashboardPage = async () => {
 
               <Link
                 href={`/dashboard/my-plan`}
-                className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-black font-medium transition"
+                className="flex items-center gap-2 dark:text-gray-200 px-5 py-3 rounded-xl border border-gray-200 text-black font-medium transition"
               >
                 <Plus size={18} /> Create Plan
               </Link>
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 shadow-sm">
+          <div className="bg-white dark:bg-accent rounded-3xl p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <Bell className="text-yellow-400" />
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-200">
                 Notifications
               </h2>
             </div>

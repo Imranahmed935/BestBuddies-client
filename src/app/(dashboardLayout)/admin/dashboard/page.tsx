@@ -58,7 +58,7 @@ const AdminDashboardPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-gray-100 dark:bg-accent p-8">
       <h1 className="text-3xl font-bold mb-10 text-gray-800">
         Admin Dashboard
       </h1>

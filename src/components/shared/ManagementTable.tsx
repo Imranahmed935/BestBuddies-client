@@ -68,17 +68,17 @@ function ManagementTable<T>({
   const handleSort = (sortKey: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    // Toggle sort order if clicking the same column
+   
     if (currentSortBy === sortKey) {
       const newOrder = currentSortOrder === "asc" ? "desc" : "asc";
       params.set("sortOrder", newOrder);
     } else {
-      // New column, default to descending
+
       params.set("sortBy", sortKey);
       params.set("sortOrder", "desc");
     }
 
-    params.set("page", "1"); // Reset to first page
+    params.set("page", "1"); 
 
     startTransition(() => {
       router.push(`?${params.toString()}`);
@@ -101,7 +101,7 @@ function ManagementTable<T>({
   return (
     <>
       <div className="rounded-lg border relative">
-        {/* Refreshing Overlay */}
+
         {isRefreshing && (
           <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-lg">
             <div className="flex flex-col items-center gap-2">

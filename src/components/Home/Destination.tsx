@@ -39,16 +39,16 @@ const Destination = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between mb-10">
           <div>
-            <h2 className="text-3xl font-bold">Popular Destinations</h2>
+            <h2 className="text-3xl font-bold dark:text-accent-foreground">Popular Destinations</h2>
             <p className="text-gray-500 text-sm">
               Trending places our community is exploring right now.
             </p>
           </div>
-          <Link href={`/find-buddy`} className="text-sm font-medium text-gray-700 hover:text-yellow-400 transition flex items-center gap-1">
+          <Link href={`/find-buddy`} className="text-sm font-medium text-gray-500  hover:text-yellow-400 transition flex items-center gap-1">
             See all → 
           </Link>
         </div>

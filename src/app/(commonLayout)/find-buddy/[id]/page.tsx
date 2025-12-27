@@ -47,11 +47,11 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
 
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
-          <div className="bg-white p-6 rounded-xl shadow space-y-4">
+          <div className="bg-white dark:bg-accent p-6 rounded-xl shadow space-y-4">
             <h2 className="text-2xl font-semibold">Trip Details</h2>
-            <p className="text-gray-700">{travel.description}</p>
+            <p className="text-gray-700 dark:text-gray-300">{travel.description}</p>
 
-            <div className="grid grid-cols-2 gap-4 text-gray-700 text-sm">
+            <div className="grid grid-cols-2 gap-4 text-gray-700 dark:text-gray-300 text-sm">
               <div><strong>Start:</strong> {new Date(travel.startDate).toLocaleDateString()}</div>
               <div><strong>End:</strong> {new Date(travel.endDate).toLocaleDateString()}</div>
               <div><strong>Budget:</strong> ${travel.budget}</div>
@@ -76,7 +76,7 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
             {travel.reviews?.map((review) => (
               <div
                 key={review.id}
-                className="bg-white p-5 rounded-xl shadow flex gap-4"
+                className="bg-white dark:bg-accent p-5 rounded-xl shadow flex gap-4"
               >
                 <div className="w-10 h-10 rounded-full overflow-hidden border">
                   <Image
@@ -90,7 +90,7 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
 
                 <div className="flex-1">
                   <div className="flex justify-between items-center">
-                    <p className="font-semibold">
+                    <p className="font-semibold ">
                       {review.reviewer?.fullName || "Anonymous"}
                     </p>
                     <span className="text-yellow-500 text-sm">
@@ -98,7 +98,7 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
                     </span>
                   </div>
 
-                  <p className="text-gray-600 text-sm mt-1">
+                  <p className="text-gray-600 text-sm mt-1 dark:text-gray-300">
                     {review.comment}
                   </p>
                 </div>
@@ -107,7 +107,7 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
           </div>
         </div>
         {travel.host && (
-          <div className="bg-white p-6 rounded-xl shadow space-y-4 sticky top-24 h-fit">
+          <div className="bg-white dark:bg-accent p-6 rounded-xl shadow space-y-4 sticky top-24 h-fit">
             <h2 className="text-2xl font-semibold">Host Information</h2>
 
             <div className="flex items-center gap-3">
@@ -122,16 +122,16 @@ const FindBuddyDetailsPage = async ({ params }: PageProps) => {
               </div>
 
               <div>
-                <p className="font-semibold">
+                <p className="font-semibold dark:text-gray-300">
                   {travel?.host?.fullName}
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
                   {travel?.host?.email}
                 </p>
               </div>
             </div>
 
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
               <strong>Emergency Contact:</strong>{" "}
               {travel.emergencyContact}
             </div>

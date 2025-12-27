@@ -28,7 +28,7 @@ const ExplorerDetailsPage = () => {
   if (!traveler) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">
+    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-accent rounded-xl shadow-md mt-6">
       <div className="flex items-center space-x-6">
         <div className="relative w-24 h-24">
           <div
@@ -63,25 +63,25 @@ const ExplorerDetailsPage = () => {
         </div>
       </div>
 
-      {/* Bio */}
+   
       <div className="mt-6">
         <h2 className="text-lg font-semibold mb-2">Bio</h2>
-        <p className="text-gray-700">{traveler.bio || "No bio available."}</p>
+        <p className="text-gray-700 dark:text-gray-400">{traveler.bio || "No bio available."}</p>
       </div>
 
-      {/* Travel Interests */}
+     
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Travel Interests</h2>
         <div className="flex flex-wrap gap-2">
           {traveler.travelInterests?.map((interest, idx) => (
-            <span key={idx} className="text-xs bg-gray-100 px-3 py-1 rounded-full">
+            <span key={idx} className="text-xs bg-gray-100 dark:text-gray-600 px-3 py-1 rounded-full">
               #{interest}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Visited Countries */}
+     
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Visited Countries</h2>
         <div className="flex flex-wrap gap-2">
@@ -96,21 +96,15 @@ const ExplorerDetailsPage = () => {
         </div>
       </div>
 
-      {/* Contact Info */}
+ 
       <div className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Contact</h2>
-        <p className="flex items-center gap-2 text-gray-700">
-          <Phone className="w-4 h-4" /> {traveler.contactNumber || "N/A"}
+        <p className="flex items-center gap-2 text-gray-700 dark:text-gray-400">
+          <Phone className="w-4 h-4 dark:text-gray-400"  /> {traveler.contactNumber || "N/A"}
         </p>
-        <p className="text-gray-700">{traveler.email}</p>
+        <p className="text-gray-700 dark:text-gray-400">{traveler.email}</p>
       </div>
 
-      {/* Connect Button */}
-      <div className="mt-6">
-        <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-6 rounded-lg">
-          Connect
-        </button>
-      </div>
     </div>
   );
 };

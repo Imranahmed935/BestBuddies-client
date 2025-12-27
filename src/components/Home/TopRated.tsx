@@ -71,12 +71,12 @@ const TopRated = () => {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-2xl font-bold text-[#111111]">
+          <h2 className="text-2xl font-bold text-[#111111] dark:text-foreground">
             Meet Our Top Rated Hosts
           </h2>
           <Link
             href={`/explore-travelers`}
-            className="text-sm font-medium text-gray-600 hover:text-black flex items-center gap-1"
+            className="text-sm font-medium text-gray-500 dark:hover:text-gray-300 hover:text-black flex items-center gap-1"
           >
             View all →
           </Link>
@@ -86,7 +86,7 @@ const TopRated = () => {
           {travelers.map((t) => (
             <div
               key={t.id}
-              className="bg-white rounded-[28px] p-4 shadow-sm border"
+              className="bg-white dark:bg-accent rounded-[28px] p-4 shadow-sm border"
             >
               <div className="relative rounded-2xl overflow-hidden">
                 <img
@@ -94,14 +94,14 @@ const TopRated = () => {
                   alt={t.name}
                   className="w-full h-64 object-cover"
                 />
-                <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded-full flex items-center gap-1 text-sm font-semibold">
+                <div className="absolute top-3 right-3 bg-white dark:text-gray-600 px-2 py-1 rounded-full flex items-center gap-1 text-sm font-semibold">
                   <Star size={14} className="text-yellow-400 fill-yellow-400" />
                   {t.rating}
                 </div>
               </div>
 
               <div className="mt-4">
-                <div className="flex items-center gap-1 font-semibold text-[#111111]">
+                <div className="flex items-center dark:text-gray-200 gap-1 font-semibold text-[#111111]">
                   {t.name}, {t.age}
                   <BadgeCheck size={16} className="text-blue-500" />
                 </div>
@@ -123,12 +123,12 @@ const TopRated = () => {
                 </div>
 
                 <div className="mt-4 flex gap-2">
-                  <button className="flex-1 py-2 rounded-full border text-sm font-medium bg-[#F5C400] hover:bg-[#E6B800] transition flex items-center justify-center">
+                  <button className="flex-1 py-2 dark:text-black rounded-full border text-sm font-medium bg-[#F5C400] hover:bg-[#E6B800] transition flex items-center justify-center">
                     Connect
                   </button>
                   <Link
                     href={`/explore-travelers/${t.id}`}
-                    className="flex-1 py-2 rounded-full border text-sm font-medium hover:bg-gray-100 transition flex items-center justify-center"
+                    className="flex-1 py-2 rounded-full dark:bg-accent border dark:hover:bg-yellow-400 text-sm font-medium hover:bg-gray-100 transition flex items-center justify-center"
                   >
                     View Profile
                   </Link>

@@ -19,9 +19,9 @@ const TravelersPage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [sentRequests, setSentRequests] = useState<string[]>([]); // userIds with pending/sent requests
+  const [sentRequests, setSentRequests] = useState<string[]>([]); 
 
-  // Fetch travelers based on search/page
+
   useEffect(() => {
     const fetchTravelers = async () => {
       const filters: { interest?: string; page: number; limit: number } = {
@@ -68,7 +68,6 @@ const TravelersPage = () => {
     onlyVerified ? traveler.verified : true
   );
 
-
   const handleConnect = async (userId: string) => {
     if (sentRequests.includes(userId)) return; 
 
@@ -84,17 +83,15 @@ const TravelersPage = () => {
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-8">
       <TopDesign />
-
-      {/* Search and filter */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search by name or interest..."
-          className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex-1 border dark:border-gray-400 rounded-lg px-4 dark:text-gray-400 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
         />
-        <label className="flex items-center gap-2 text-gray-700">
+        <label className="flex items-center gap-2 text-gray-700 dark:text-gray-400">
           <input
             type="checkbox"
             checked={onlyVerified}
@@ -104,8 +101,6 @@ const TravelersPage = () => {
           Verified Users Only
         </label>
       </div>
-
-      {/* Travelers grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {filteredTravelers.length > 0 ? (
           filteredTravelers.map(traveler => (
@@ -120,8 +115,6 @@ const TravelersPage = () => {
           <p className="text-gray-500 col-span-full text-center">No travelers found.</p>
         )}
       </div>
-
-      {/* Pagination */}
       <div className="flex justify-center items-center gap-4 mt-6">
         <button
           onClick={() => setPage(prev => Math.max(prev - 1, 1))}

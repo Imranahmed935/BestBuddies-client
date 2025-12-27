@@ -23,8 +23,8 @@ interface FriendCardProps {
 
 const FriendCard = ({ friend }: FriendCardProps) => {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
-      <div className="max-w-sm mx-auto border rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+    <div className="max-w-7xl mx-auto px-6 py-12 ">
+      <div className="max-w-sm mx-auto border dark:bg-accent rounded-2xl p-4 shadow-sm hover:shadow-md transition">
         <div className="flex justify-between items-start mb-2">
           <div className="flex items-center gap-2">
             <Image
@@ -35,7 +35,7 @@ const FriendCard = ({ friend }: FriendCardProps) => {
               className="w-16 h-16 rounded-full object-cover"
             />
             <div className="flex flex-col">
-              <h3 className="font-medium text-gray-800">{friend.fullName}</h3>
+              <h3 className="font-medium text-gray-800 dark:text-gray-200">{friend.fullName}</h3>
               <p className="text-xs text-gray-500 flex items-center gap-1">
                 <MapPin size={12} /> {friend.currentLocation}
               </p>

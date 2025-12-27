@@ -7,7 +7,12 @@ import { useActionState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { loginUser } from "@/services/auth/loginUser";
 import { toast } from "sonner";
 
@@ -17,7 +22,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [password, setPassword] = useState("");
   const [state, action, isPending] = useActionState(loginUser, null);
 
-  // Demo autofill function
   const handleAutoFill = (role: "ADMIN" | "USER") => {
     if (role === "ADMIN") {
       setEmail("admin@gmail.com");
@@ -29,7 +33,14 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
     toast.info(`Auto-filled ${role} credentials`);
   };
 
-  // Toast messages for login
+  const getFieldError = (fieldName: string) => {
+    if (state?.errors) {
+      const error = state.errors.find((err: any) => err.field === fieldName);
+      return error?.message;
+    }
+    return null;
+  };
+
   useEffect(() => {
     if (state && state.success) toast.success("Logged in successfully!");
     if (state && !state.success && state.message) toast.error(state.message);
@@ -37,7 +48,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
-      {/* Left Image */}
       <div className="hidden md:flex items-center justify-center relative">
         <img
           src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
@@ -49,19 +59,23 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             Connect with travelers <br /> around the globe.
           </h2>
           <p className="text-sm text-gray-200">
-            Share your journey, find companions, and create unforgettable memories together.
+            Share your journey, find companions, and create unforgettable
+            memories together.
           </p>
         </div>
       </div>
 
-      {/* Right Form */}
       <div className="flex items-center justify-center px-6">
         <div className="w-full max-w-md">
           <h2 className="text-3xl font-bold mb-2">Welcome back!</h2>
-          <p className="text-gray-500 mb-8">Log in to plan your next adventure.</p>
+          <p className="text-gray-500 mb-8">
+            Log in to plan your next adventure.
+          </p>
 
           <form action={action}>
-            {redirect && <input type="hidden" name="redirect" value={redirect} />}
+            {redirect && (
+              <input type="hidden" name="redirect" value={redirect} />
+            )}
 
             <FieldGroup>
               <Field>
@@ -74,6 +88,11 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                {getFieldError("email") && (
+                  <FieldDescription className="text-red-600">
+                    {getFieldError("email")}
+                  </FieldDescription>
+                )}
               </Field>
 
               <Field>
@@ -87,6 +106,11 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  {getFieldError("password") && (
+                    <FieldDescription className="text-red-600">
+                      {getFieldError("password")}
+                    </FieldDescription>
+                  )}
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -107,7 +131,6 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             </Button>
           </form>
 
-          {/* Demo Credentials Card */}
           <div className="mt-6 space-y-3">
             <p className="font-semibold text-sm">Demo Credentials</p>
 
@@ -117,7 +140,11 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                 <p className="font-mono">admin@gmail.com</p>
                 <p className="font-mono">12345678</p>
               </div>
-              <Button type="button" variant="outline" onClick={() => handleAutoFill("ADMIN")}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => handleAutoFill("ADMIN")}
+              >
                 Use
               </Button>
             </div>
@@ -128,7 +155,11 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
                 <p className="font-mono">imam@gmail.com</p>
                 <p className="font-mono">123456</p>
               </div>
-              <Button type="button" variant="outline" onClick={() => handleAutoFill("USER")}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => handleAutoFill("USER")}
+              >
                 Use
               </Button>
             </div>

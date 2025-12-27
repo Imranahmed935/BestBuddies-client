@@ -3,6 +3,7 @@
 import { serverFetch } from "@/lib/server-fatch";
 import { getUserInfo } from "@/services/auth/getUserInfo";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const plans = [
   {
@@ -46,25 +47,24 @@ const PricingCard = () => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      console.log(data)
       if (data.success && data.data.url) {
         window.location.href = data.data.url;
       } else {
-        alert("Failed to create checkout session.");
+        toast.error("Failed to create checkout session.");
         console.error(data);
       }
     } catch (err) {
       console.error("Checkout error:", err);
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoadingPlan(null);
     }
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-900">Find the Perfect Plan</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-accent-foreground">Find the Perfect Plan</h2>
         <p className="text-gray-500 mt-2">
           Choose the best way to connect with your future travel buddies.
         </p>
@@ -75,11 +75,11 @@ const PricingCard = () => {
           <div
             key={index}
             className={`rounded-2xl p-8 border ${
-              plan.popular ? "border-yellow-400 bg-yellow-50 relative" : "border-yellow-400 bg-white"
+              plan.popular ? "border-yellow-400 bg-yellow-50 relative dark:bg-accent" : "border-yellow-400 bg-white dark:bg-accent"
             } flex flex-col`}
           >
             {plan.popular && (
-              <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-yellow-400 text-black text-xs font-semibold rounded-full">
+              <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-yellow-400  text-black text-xs font-semibold rounded-full">
                 MOST POPULAR
               </span>
             )}
@@ -87,9 +87,9 @@ const PricingCard = () => {
             <h3 className="text-lg font-semibold">{plan.name}</h3>
             <div className="mt-4">
               <span className="text-3xl font-bold">{plan.price}</span>
-              <span className="text-gray-500 ml-1">{plan.period}</span>
+              <span className="text-gray-500 ml-1 dark:text-gray-300">{plan.period}</span>
             </div>
-            <p className="text-gray-500 mt-2">{plan.description}</p>
+            <p className="text-gray-500 mt-2 dark:text-gray-300">{plan.description}</p>
 
             <button
               onClick={() => handleSubscribe(plan.name)}
@@ -105,8 +105,8 @@ const PricingCard = () => {
 
             <ul className="mt-6 space-y-2">
               {plan.features.map((feature, i) => (
-                <li key={i} className="flex items-center gap-2 text-gray-600 text-sm">
-                  <span className="w-4 h-4 bg-yellow-400 rounded-full flex-shrink-0"></span>
+                <li key={i} className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm">
+                  <span className="w-4 h-4 dark:text-gray-300 bg-yellow-400 rounded-full flex-shrink-0"></span>
                   {feature}
                 </li>
               ))}

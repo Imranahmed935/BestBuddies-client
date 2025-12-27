@@ -10,6 +10,7 @@ import { NavSection } from "@/types/dashboard.interface";
 import { UserInfo } from "@/types/user.interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "../shared/LogoPage";
 
 interface DashboardMobileSidebarContentProps {
   userInfo: UserInfo;
@@ -28,14 +29,10 @@ const DashboardMobileSidebar = ({
       {/* Logo */}
       <div className="flex h-16 items-center border-b px-6">
         <Link href={dashboardHome}>
-          <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            BestBuddies
-          </span>
+          <Logo/>
         </Link>
       </div>
-      <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-
-      {/* Navigation */}
+      <SheetTitle className="sr-only"><Logo/></SheetTitle>
       <ScrollArea className="flex-1 px-3 py-4">
         <nav className="space-y-6">
           {navItems.map((section, sectionIdx) => (

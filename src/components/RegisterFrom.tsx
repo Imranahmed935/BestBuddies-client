@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { registerUser } from "@/services/auth/registerUser";
+import InputFieldError from "./shared/InputFieldError";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +21,6 @@ const RegisterForm = () => {
     if (state?.success) {
       toast.success("Account created successfully!");
     }
-
     if (state && !state.success && state.message) {
       toast.error(state.message);
     }
@@ -59,21 +59,21 @@ const RegisterForm = () => {
 
           <form action={action}>
             <FieldGroup className="space-y-5">
-              {/* Full Name */}
               <Field>
                 <FieldLabel>Full Name</FieldLabel>
                 <div className="flex items-center bg-gray-100 rounded-full px-4 py-3">
                   <User className="w-4 h-4 text-gray-400 mr-3" />
                   <Input
                     name="fullName"
-                    required
+                
                     placeholder="John Doe"
                     className="border-0 bg-transparent focus-visible:ring-0"
                   />
+                  
                 </div>
+                <InputFieldError field="fullName" state={state} />
               </Field>
 
-              {/* Email */}
               <Field>
                 <FieldLabel>Email</FieldLabel>
                 <div className="flex items-center bg-gray-100 rounded-full px-4 py-3">
@@ -81,14 +81,16 @@ const RegisterForm = () => {
                   <Input
                     name="email"
                     type="email"
-                    required
+                    
                     placeholder="traveler@example.com"
                     className="border-0 bg-transparent focus-visible:ring-0"
                   />
+                 
                 </div>
+                 <InputFieldError field="email" state={state} />
               </Field>
 
-              {/* Password */}
+           
               <Field>
                 <FieldLabel>Password</FieldLabel>
                 <div className="flex items-center bg-gray-100 rounded-full px-4 py-3">
@@ -96,10 +98,10 @@ const RegisterForm = () => {
                   <Input
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    required
                     placeholder="Create a password"
                     className="border-0 bg-transparent focus-visible:ring-0"
                   />
+                  
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -107,9 +109,10 @@ const RegisterForm = () => {
                     <Eye className="w-4 h-4 text-gray-400" />
                   </button>
                 </div>
+                <InputFieldError field="password" state={state} />
               </Field>
 
-              {/* Confirm Password */}
+              
               <Field>
                 <FieldLabel>Confirm Password</FieldLabel>
                 <div className="flex items-center bg-gray-100 rounded-full px-4 py-3">
@@ -117,10 +120,10 @@ const RegisterForm = () => {
                   <Input
                     name="confirmPassword"
                     type={showConfirm ? "text" : "password"}
-                    required
                     placeholder="Confirm your password"
                     className="border-0 bg-transparent focus-visible:ring-0"
                   />
+                  
                   <button
                     type="button"
                     onClick={() => setShowConfirm(!showConfirm)}
@@ -128,6 +131,7 @@ const RegisterForm = () => {
                     <Eye className="w-4 h-4 text-gray-400" />
                   </button>
                 </div>
+                <InputFieldError field="confirmPassword" state={state} />
               </Field>
             </FieldGroup>
 

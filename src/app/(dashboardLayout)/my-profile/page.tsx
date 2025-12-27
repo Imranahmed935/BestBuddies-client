@@ -53,7 +53,7 @@ const MyProfilePage = async () => {
             </div>
 
             <div className="flex justify-center items-center gap-2 mt-4">
-              <h2 className="text-xl font-semibold">{fullName}</h2>
+              <h2 className="text-xl font-semibold dark:text-black">{fullName}</h2>
               {verified && <BadgeCheck className="text-blue-500" size={20} />}
             </div>
 
@@ -83,7 +83,7 @@ const MyProfilePage = async () => {
           </div>
 
           <div className="lg:col-span-2 space-y-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 dark:text-gray-400">
               <StatCard label="Countries" value={visitedCountries?.length} />
               <StatCard label="Age" value={age} />
               <StatCard label="Trips" value={12} />
@@ -103,7 +103,7 @@ const MyProfilePage = async () => {
             </div>
 
             <div className="bg-white rounded-2xl shadow-md p-6">
-              <h3 className="text-lg font-semibold mb-3">About Me</h3>
+              <h3 className="text-lg font-semibold mb-3 dark:text-gray-600">About Me</h3>
               <p className="text-gray-600 leading-relaxed">{bio}</p>
 
               <div className="flex flex-wrap gap-2 mt-4">
@@ -119,7 +119,7 @@ const MyProfilePage = async () => {
             </div>
 
             <div className="bg-white rounded-2xl shadow-md p-6">
-              <h3 className="text-lg font-semibold mb-4">Visited Countries</h3>
+              <h3 className="text-lg font-semibold mb-4 dark:text-gray-600">Visited Countries</h3>
               <div className="flex flex-wrap gap-3">
                 {visitedCountries?.map((country: string) => (
                   <span
@@ -134,7 +134,7 @@ const MyProfilePage = async () => {
 
             <div className="bg-white rounded-2xl shadow-md p-6">
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold">What Buddies Say</h3>
+                <h3 className="text-lg font-semibold dark:text-gray-600">What Buddies Say</h3>
                 <span className="text-sm text-blue-600 cursor-pointer">
                   View All →
                 </span>

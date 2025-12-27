@@ -13,7 +13,7 @@ interface ExplorerCardProps {
 
 const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCardProps) => {
   return (
-    <div className="bg-white rounded shadow-md p-4 flex flex-col justify-between w-72">
+    <div className="bg-white dark:bg-accent rounded shadow-md p-4 flex flex-col justify-between w-72">
       <div className="space-y-3">
         <div className="flex items-center space-x-3">
           <div className="relative w-16 h-16">
@@ -33,7 +33,7 @@ const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCa
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg flex items-center">
+            <h3 className="font-semibold dark:text-gray-200 text-lg flex items-center">
               {userInfo.fullName}, {userInfo.age}
             </h3>
             <div className="flex items-center text-gray-500 text-sm">
@@ -48,7 +48,7 @@ const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCa
           {userInfo.travelInterests?.slice(0, 3).map((interest, idx) => (
             <span
               key={idx}
-              className="text-xs bg-gray-100 px-2 py-1 rounded-full"
+              className="text-xs bg-gray-100 dark:bg-gray-200 px-2 py-1 rounded-full dark:text-gray-500"
             >
               #{interest}
             </span>
@@ -60,7 +60,7 @@ const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCa
       <div className="flex space-x-2 mt-4">
         <Link
           href={`/explore-travelers/${userInfo.id}`}
-          className="flex-1 py-2 px-3 bg-gray-100 rounded-lg text-sm text-center hover:bg-gray-200"
+          className="flex-1 py-2 px-3 bg-gray-100 rounded-lg dark:text-gray-600 text-sm text-center hover:bg-gray-200"
         >
           View Details
         </Link>
@@ -68,7 +68,7 @@ const ExplorerCard = ({ userInfo, onConnect, isRequestSent = false }: ExplorerCa
         <button
           onClick={() => onConnect && onConnect(userInfo.id)}
           disabled={isRequestSent}
-          className={`px-4 py-2 rounded flex-1 text-white ${
+          className={`px-4 py-2 rounded flex-1 text-white dark:text-black ${
             isRequestSent
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-yellow-500 hover:bg-yellow-600"

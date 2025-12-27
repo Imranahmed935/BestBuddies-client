@@ -6,7 +6,6 @@ import { serverFetch } from "@/lib/server-fatch";
 export async function exploreTravelers(filters?: { interest?: string; page?: number; limit?: number }) {
     try {
         const queryParams = new URLSearchParams();
-
         if (filters?.interest) queryParams.append("interest", filters.interest);
         if (filters?.page) queryParams.append("page", String(filters.page));
         if (filters?.limit) queryParams.append("limit", String(filters.limit));
