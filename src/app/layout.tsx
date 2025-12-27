@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     default: "BestBuddies",
     template: "%s | BestBuddies",
   },
+  icons: {
+    icon: '/logo.ico', 
+  },
   description:
     "Find trusted travel buddies, create travel plans, join trips, and explore destinations together with BestBuddies.",
 };
@@ -32,6 +35,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning >
+      <head>
+        <link rel="icon" href="/logo.png" />
+      </head>
       <body className="antialiased bg-[#f8f8f5] dark:bg-black min-h-screen">
         <ThemeProvider
           attribute="class"
