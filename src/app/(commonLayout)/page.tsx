@@ -7,6 +7,7 @@ import TopRated from "@/components/Home/TopRated";
 import WhyChooseUs from "@/components/Home/WhyChooseUs";
 import { getAllTestimonial } from "@/services/review/review";
 import { getAllPlan } from "@/services/travel/travelPlan";
+export const dynamic = "force-dynamic";
 
 export default async function  Home() {
   const res = await getAllPlan();

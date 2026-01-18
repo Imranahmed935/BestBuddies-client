@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import Marquee from "react-fast-marquee";
-import { getAllTestimonial } from "@/services/review/review";
 
 interface Reviewer {
   fullName: string;
@@ -16,17 +15,8 @@ interface Review {
   reviewer: Reviewer;
 }
 
-const Review = ({reviews}) => {
-  // const [reviews, setReviews] = useState<Review[]>([]);
-
-  // useEffect(() => {
-  //   const fetchReviews = async () => {
-      
-  //     setReviews(res || []);
-  //   };
-  //   fetchReviews();
-  // }, []);
-
+const Review = ({reviews}:{reviews:any}) => {
+  
   return (
     <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-6">
@@ -40,7 +30,7 @@ const Review = ({reviews}) => {
         </div>
 
         <Marquee gradient={false} speed={35} pauseOnHover>
-          {reviews.map((review) => (
+          {reviews.map((review:any) => (
             <div
               key={review.id}
               className="mx-4 w-80 rounded-3xl bg-white/70 dark:bg-accent backdrop-blur-md border border-yellow-400 shadow-sm hover:shadow-md transition-shadow duration-300 p-6"
