@@ -67,7 +67,7 @@ const RegisterForm = () => {
                     name="fullName"
                 
                     placeholder="John Doe"
-                    className="border-0 bg-transparent focus-visible:ring-0"
+                    className="border-0 bg-transparent focus-visible:ring-0 dark:text-gray-700"
                   />
                   
                 </div>
@@ -83,7 +83,7 @@ const RegisterForm = () => {
                     type="email"
                     
                     placeholder="traveler@example.com"
-                    className="border-0 bg-transparent focus-visible:ring-0"
+                    className="border-0 bg-transparent focus-visible:ring-0 dark:text-gray-700"
                   />
                  
                 </div>
@@ -99,7 +99,7 @@ const RegisterForm = () => {
                     name="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a password"
-                    className="border-0 bg-transparent focus-visible:ring-0"
+                    className="border-0 bg-transparent focus-visible:ring-0 dark:text-gray-700"
                   />
                   
                   <button
@@ -121,7 +121,7 @@ const RegisterForm = () => {
                     name="confirmPassword"
                     type={showConfirm ? "text" : "password"}
                     placeholder="Confirm your password"
-                    className="border-0 bg-transparent focus-visible:ring-0"
+                    className="border-0 bg-transparent focus-visible:ring-0 dark:text-gray-700"
                   />
                   
                   <button
