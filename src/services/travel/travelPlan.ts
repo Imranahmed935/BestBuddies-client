@@ -3,10 +3,15 @@
 
 import { serverFetch } from "@/lib/server-fatch";
 
+
+
 export async function getAllPlan() {
     try {
     
-        const response = await serverFetch.get(`/travel-plan`);
+        const response = await serverFetch.get(`/travel-plan`,{
+            next: { revalidate:  86400 }
+        })
+        
         const result = await response.json();
         return {
             success: result.success,

@@ -16,16 +16,16 @@ interface Review {
   reviewer: Reviewer;
 }
 
-const Review = () => {
-  const [reviews, setReviews] = useState<Review[]>([]);
+const Review = ({reviews}) => {
+  // const [reviews, setReviews] = useState<Review[]>([]);
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const res = await getAllTestimonial();
-      setReviews(res || []);
-    };
-    fetchReviews();
-  }, []);
+  // useEffect(() => {
+  //   const fetchReviews = async () => {
+      
+  //     setReviews(res || []);
+  //   };
+  //   fetchReviews();
+  // }, []);
 
   return (
     <section className="py-20 ">

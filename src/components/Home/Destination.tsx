@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { getAllPlan } from "@/services/travel/travelPlan";
+
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 interface DestinationItem {
   id: string;
@@ -12,15 +12,12 @@ interface DestinationItem {
   buddies?: number;
 }
 
-const Destination = () => {
+const Destination = ({plans}:{plans:any}) => {
   const [destinations, setDestinations] = useState<DestinationItem[]>([]);
 
   useEffect(() => {
     const fetchTopDestinations = async () => {
       try {
-        const res = await getAllPlan();
-        const plans = res.data;
-
         const destinationList = plans.map((plan: any) => ({
           id: plan.id,
           name: plan.destination,
@@ -36,7 +33,7 @@ const Destination = () => {
     };
 
     fetchTopDestinations();
-  }, []);
+  }, [plans]);
 
   return (
     <section className="py-24 bg-white dark:bg-black">

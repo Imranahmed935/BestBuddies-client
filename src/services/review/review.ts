@@ -28,7 +28,9 @@ export const getReviews = async (id: string ) => {
 
 export const getAllTestimonial = async () => {
   try {
-    const res = await serverFetch.get("/review");
+    const res = await serverFetch.get("/review",{
+      next: { revalidate:  86400 }
+    });
     const data = await res.json();
     return data.data;
   } catch (error) {

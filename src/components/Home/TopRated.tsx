@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
-import { getAllPlan } from "@/services/travel/travelPlan";
 import { Star, MapPin, BadgeCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,14 +17,12 @@ interface Traveler {
   rating: number;
 }
 
-const TopRated = () => {
+const TopRated = ({plans}:{plans:any}) => {
   const [travelers, setTravelers] = useState<Traveler[]>([]);
-
+  
   useEffect(() => {
     const fetchTopHosts = async () => {
       try {
-        const res = await getAllPlan();
-        const plans = res.data;
         const hostMap: Record<string, any> = {};
 
         plans.forEach((plan: any) => {
@@ -65,7 +64,7 @@ const TopRated = () => {
     };
 
     fetchTopHosts();
-  }, []);
+  }, [plans]);
 
   return (
     <section className="py-20">
